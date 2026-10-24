@@ -11,7 +11,7 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     GSC_EXPORT_DIR=/data/exports
 
 WORKDIR /app
-COPY pyproject.toml README.md LICENSE THIRD_PARTY_NOTICES.md CHANGELOG.md ./
+COPY pyproject.toml README.md LICENSE CHANGELOG.md ./
 COPY sam_gsc_mcp ./sam_gsc_mcp
 COPY skills ./skills
 RUN pip install --no-cache-dir . && useradd --create-home --uid 10001 mcp && mkdir -p /data && chown mcp /data

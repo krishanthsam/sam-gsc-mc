@@ -9,7 +9,7 @@ description = "All-in-one Google Search Console MCP server for SEOs: analytics, 
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+license-files = ["LICENSE"]
 authors = [{ name = "Krishanth Sam" }]
 keywords = [
   "mcp", "mcp-server", "model-context-protocol", "google-search-console", "gsc", "seo",
@@ -58,7 +58,7 @@ packages = ["sam_gsc_mcp"]
 "skills" = "sam_gsc_mcp/skills"
 
 [tool.hatch.build.targets.sdist]
-include = ["sam_gsc_mcp", "skills", "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "CHANGELOG.md", "tests"]
+include = ["sam_gsc_mcp", "skills", "README.md", "LICENSE", "CHANGELOG.md", "tests"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

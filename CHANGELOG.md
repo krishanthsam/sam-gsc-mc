@@ -4,12 +4,9 @@ All notable changes to Sam GSC MCP. Dates are YYYY-MM-DD. This project follows [
 
 ## [1.0.0] — 2026-10-24
 
-First release: one server that combines everything from
-[AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc),
-[surendranb/google-search-console-mcp](https://github.com/surendranb/google-search-console-mcp) and
-[metehan777/google-search-console-mcp](https://github.com/metehan777/google-search-console-mcp), plus new tools.
+First release.
 
-### Added — merged from the reference servers
+### Added — core
 - **Auth:** OAuth (browser sign-in, token stored in the OS config folder), service account key, `GSC_SKIP_OAUTH`,
   `reauthenticate`, fail-fast errors for wrong credential paths, `GOOGLE_APPLICATION_CREDENTIALS` support.
 - **Properties:** `list_properties`, `get_site_details`, `add_site`, `delete_site`.
@@ -26,13 +23,12 @@ First release: one server that combines everything from
 - **Recovery:** `setup_gsc_access` with interactive prompts (MCP elicitation) on supporting clients, guided error messages.
 - **Ops:** `check_for_updates`, `GSC_ALLOW_DESTRUCTIVE` safety flag, SSE / streamable HTTP transport, Dockerfile.
 
-### Added — new in Sam GSC MCP
+### Added — SEO power features
 - **SEO insight tools:** `find_striking_distance_keywords`, `find_keyword_cannibalization`, `get_brand_vs_nonbrand`,
   `find_low_ctr_opportunities` — computed server-side, so the AI gets ranked answers instead of raw rows.
 - **`get_hourly_performance`** — Search Analytics hourly data (`HOUR` + `HOURLY_ALL`, last ~10 days).
 - **`export_search_analytics`** — auto-paginated CSV export (up to 500,000 rows).
-- **Real Indexing API** — `request_indexing` / `get_indexing_status` (opt-in via `GSC_ENABLE_INDEXING_API`), replacing
-  the simulated "submit URL" response in one reference project.
+- **Real Indexing API** — `request_indexing` / `get_indexing_status` (opt-in via `GSC_ENABLE_INDEXING_API`).
 - **Real coverage reports** — `get_index_coverage` / `get_mobile_issues` sample URLs from top pages, a sitemap
   (read directly, including sitemap indexes and `.gz`) or your list, then group live URL Inspection results.
 - **Property auto-matching** — `example.com`, `www.example.com` or a URL without trailing slash resolves to the
@@ -41,7 +37,7 @@ First release: one server that combines everything from
 - **`GSC_READ_ONLY`** — read-only OAuth scope and every write tool hidden.
 - **`GSC_TOOLSETS` / `GSC_DISABLED_TOOLS`** — load only the tool groups you need (useful for clients with tool limits).
 - **`GSC_COMPAT_ALIASES`** — optional aliases (`list_sites`, `list_gsc_sites`, `get_performance_data`,
-  `get_url_inspection_result`, `get_sitemap_data`, `submit_url`) so prompts written for the other servers keep working.
+  `get_url_inspection_result`, `get_sitemap_data`, `submit_url`) so prompts written with these common tool names keep working.
 - **11 SEO skills:** seo-weekly-report, keyword-cannibalization, indexing-audit, content-opportunities,
   brand-visibility, citation-opportunities, intent-efficiency, intent-segmentation, search-appearance-audit,
   diagnose-traffic-drop, content-decay. **6 prompts:** seo-weekly-report, content-opportunities,
@@ -51,7 +47,7 @@ First release: one server that combines everything from
 - Works on **both MCP Python SDK lines** (1.x `FastMCP` and 2.x `MCPServer`) — no more breakage when the SDK major
   version changes.
 
-### Changed / fixed compared with the reference servers
+### Quality details
 - CTR is returned consistently as a **percentage** in every tool (`ctr_unit: "percent"`).
 - Robots.txt blocks are detected from the real API values (`DISALLOWED`, `BLOCKED_ROBOTS_TXT`); never-crawled URLs are
   no longer reported as fetch errors.

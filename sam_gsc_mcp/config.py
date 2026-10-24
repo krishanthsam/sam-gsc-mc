@@ -134,7 +134,7 @@ class Settings:
         return out
 
     def possible_client_secret_paths(self) -> list[str]:
-        """Explicit path first, then the file names used by the upstream projects."""
+        """Explicit path first, then the common default file names."""
         if self.oauth_client_secrets_file:
             return [self.oauth_client_secrets_file]
         out = []

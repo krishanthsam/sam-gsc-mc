@@ -1,9 +1,4 @@
-"""Sam GSC MCP — the all-in-one Google Search Console MCP server.
-
-Combines and extends the features of three open-source GSC MCP servers
-(AminForou/mcp-gsc, surendranb/google-search-console-mcp and
-metehan777/google-search-console-mcp) into one server. See README.md.
-"""
+"""Sam GSC MCP — the all-in-one Google Search Console MCP server for SEOs. See README.md."""
 
 # NOTE: no `from __future__ import annotations` here — the MCP SDK inspects
 # real annotation objects to find the injected Context parameter.
@@ -421,7 +416,7 @@ async def check_for_updates() -> str:
 
 @tool("setup", "About the creator", open_world=False)
 async def get_creator_info() -> str:
-    """About Krishanth Sam (Sam Optimizer), who built Sam GSC MCP, plus credits to the upstream projects."""
+    """About Krishanth Sam (Sam Optimizer), who built Sam GSC MCP."""
     return dumps(
         {
             "creator": "Krishanth Sam",
@@ -430,11 +425,6 @@ async def get_creator_info() -> str:
             "linkedin": "https://www.linkedin.com/in/krishanth-sam",
             "github": "https://github.com/krishanthsam",
             "project": REPO_URL,
-            "credits": [
-                "AminForou/mcp-gsc (Amin Foroutan) — MIT",
-                "surendranb/google-search-console-mcp (Surendran B) — MIT",
-                "metehan777/google-search-console-mcp (Metehan Yesilyurt)",
-            ],
         }
     )
 
@@ -1710,17 +1700,17 @@ async def manage_sitemaps(site_url: Optional[str] = None, action: str = "list", 
 
 
 # =========================================================================== COMPAT ALIASES
-# Same names as the upstream servers, so prompts written for them keep working.
+# Alternative tool names, so prompts written with these common names keep working.
 
 @tool("properties", "List sites (alias)", requires="aliases", name="list_sites")
 async def _alias_list_sites() -> str:
-    """Alias of list_properties (metehan777 / surendranb naming)."""
+    """Alias of list_properties."""
     return await list_properties()
 
 
 @tool("properties", "List GSC sites (alias)", requires="aliases", name="list_gsc_sites")
 async def _alias_list_gsc_sites() -> str:
-    """Alias of list_properties (surendranb naming)."""
+    """Alias of list_properties."""
     return await list_properties()
 
 
@@ -1736,7 +1726,7 @@ async def _alias_get_performance_data(
     filter_device: Optional[str] = None,
     row_limit: int = 1000,
 ) -> str:
-    """Alias of get_advanced_search_analytics with metehan777-style shortcut filters (filter_query, filter_page, filter_country, filter_device)."""
+    """Alias of get_advanced_search_analytics with shortcut filters (filter_query, filter_page, filter_country, filter_device)."""
     flt = []
     for dim, val, op in (("query", filter_query, "contains"), ("page", filter_page, "contains"),
                          ("country", filter_country, "equals"), ("device", filter_device, "equals")):
@@ -1748,19 +1738,19 @@ async def _alias_get_performance_data(
 
 @tool("inspection", "URL inspection (alias)", requires="aliases", name="get_url_inspection_result")
 async def _alias_get_url_inspection_result(site_url: Optional[str] = None, page_url: str = "") -> str:
-    """Alias of inspect_url_enhanced (metehan777 naming)."""
+    """Alias of inspect_url_enhanced."""
     return await inspect_url_enhanced(site_url, page_url)
 
 
 @tool("sitemaps", "Sitemap data (alias)", requires="aliases", name="get_sitemap_data")
 async def _alias_get_sitemap_data(site_url: Optional[str] = None) -> str:
-    """Alias of list_sitemaps_enhanced (metehan777 naming)."""
+    """Alias of list_sitemaps_enhanced."""
     return await list_sitemaps_enhanced(site_url)
 
 
 @tool("indexing", "Submit URL (alias)", read_only=False, idempotent=False, requires="aliases", name="submit_url")
 async def _alias_submit_url(site_url: Optional[str] = None, page_url: str = "") -> str:
-    """Alias of request_indexing for one URL (metehan777 naming). Uses the real Indexing API when GSC_ENABLE_INDEXING_API=true."""
+    """Alias of request_indexing for one URL. Uses the real Indexing API when GSC_ENABLE_INDEXING_API=true."""
     if not cfg.SETTINGS.enable_indexing_api:
         return error_payload(
             "Direct indexing requests need the Indexing API, which is off.",

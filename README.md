@@ -10,11 +10,8 @@ analyse SEO data in plain English — "which pages lost clicks this month?", "fi
 "is this URL indexed?". It works with **Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, Codex CLI, Gemini CLI**
 and any other MCP client.
 
-It is the **all-in-one** version of three popular open-source GSC MCP servers — every tool, skill and setting from
-[AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc),
-[surendranb/google-search-console-mcp](https://github.com/surendranb/google-search-console-mcp) and
-[metehan777/google-search-console-mcp](https://github.com/metehan777/google-search-console-mcp) in one server — plus new
-SEO insight tools, hourly data, CSV export, the real Indexing API and 11 ready-made SEO skills.
+It is an **all-in-one** server: search analytics, SEO insight tools, URL inspection, sitemaps, hourly data, CSV
+export, the Indexing API and 11 ready-made SEO skills — in one place.
 
 ![How Sam GSC MCP works](docs/screenshots/00-how-it-works.svg)
 
@@ -34,7 +31,6 @@ SEO insight tools, hourly data, CSV export, the real Indexing API and 11 ready-m
 - [Remote Deployment & Docker](#remote-deployment--docker-advanced)
 - [Troubleshooting](#troubleshooting)
 - [Process Screenshots](#process-screenshots)
-- [How it compares](#how-it-compares-to-the-reference-servers)
 - [Contributing](#contributing) · [Credits](#credits) · [License](#license) · [Changelog](#changelog)
 
 ---
@@ -42,7 +38,7 @@ SEO insight tools, hourly data, CSV export, the real Indexing API and 11 ready-m
 ## What's New
 
 ### [1.0.0] — October 2026
-- **One server, everything included** — all 30+ tools from the three reference projects, merged and de-duplicated.
+- **One server, everything included** — 40 tools for analytics, insights, inspection, indexing and sitemaps.
 - **SEO insight tools** — `find_striking_distance_keywords`, `find_keyword_cannibalization`, `get_brand_vs_nonbrand`
   and `find_low_ctr_opportunities` return ranked, ready-to-act lists instead of raw rows.
 - **Hourly data** — `get_hourly_performance` uses Google's hourly Search Analytics data (last ~10 days).
@@ -438,7 +434,7 @@ use and which tools are enabled.
 🔒 = disabled until `GSC_ALLOW_DESTRUCTIVE=true`.
 
 **Compatibility aliases** (`GSC_COMPAT_ALIASES=true`): `list_sites`, `list_gsc_sites`, `get_performance_data`,
-`get_url_inspection_result`, `get_sitemap_data`, `submit_url` — the tool names used by the reference servers.
+`get_url_inspection_result`, `get_sitemap_data`, `submit_url` — common alternative tool names, so older prompts keep working.
 
 **Output conventions:** every tool returns compact JSON. `ctr` is a **percentage** (3.25 = 3.25 %), `position` is an
 average where **lower is better**, and errors come back as `{"error": "...", "how_to_fix": [...]}`.
@@ -494,7 +490,7 @@ All paths must be **absolute** (`~` and `$HOME` are expanded). A full commented 
 | `GSC_ENABLE_INDEXING_API` | `false` | `true` adds the Indexing API scope and the `request_indexing` / `get_indexing_status` tools |
 | `GSC_TOOLSETS` | `all` | Comma list of groups to load: `setup, reference, skills, properties, analytics, insights, inspection, indexing, sitemaps` (setup is always kept) |
 | `GSC_DISABLED_TOOLS` | — | Comma list of individual tools to hide |
-| `GSC_COMPAT_ALIASES` | `false` | `true` also registers the reference servers' tool names |
+| `GSC_COMPAT_ALIASES` | `false` | `true` also registers alternative tool names (`list_sites`, `submit_url`, …) |
 | `GSC_MAX_BATCH_URLS` | `10` | Max URLs per inspection batch (1–100). URL Inspection quota: 2,000/day, 600/min per property. |
 | `GSC_INSPECTION_CONCURRENCY` | `10` | Parallel URL inspections (1–20) |
 | `GSC_API_RETRIES` | `3` | Automatic retries on 429/5xx |
@@ -684,29 +680,6 @@ Prefer real screenshots? Save PNGs with the same names in `docs/screenshots/` an
 
 ---
 
-## How it compares to the reference servers
-
-| Capability | AminForou/mcp-gsc | surendranb/…-mcp | metehan777/…-mcp | **Sam GSC MCP** |
-|---|:-:|:-:|:-:|:-:|
-| OAuth / service account | ✅ / ✅ | — / ✅ | ✅ / — | ✅ / ✅ + ADC |
-| Multiple properties per session | ✅ | one (env) | ✅ | ✅ + default property + auto-match |
-| Advanced analytics, pagination, sorting | ✅ | ✅ | partial | ✅ |
-| Regex filters, Discover / Google News | partial | ✅ | — | ✅ |
-| Period comparison / previous-period summary | ✅ / — | — | — / ✅ | ✅ / ✅ |
-| Hourly data, CSV export | — | — | — | ✅ |
-| Striking distance, cannibalization, brand, low-CTR tools | skills only | skills only | — | ✅ tools + skills |
-| URL inspection, batch, indexing issues | ✅ | — | ✅ | ✅ (concurrent) |
-| Coverage / mobile reports | — | — | via Search Analytics (unsupported by the API) | ✅ via live inspection |
-| URL submission | — | — | simulated | ✅ real Indexing API (opt-in) |
-| Sitemaps list/details/submit/delete | ✅ | ✅ | list | ✅ |
-| Skills / prompts / resources | 4 / — / — | 5 / 3 / ✅ | — | **11 / 6 / ✅** |
-| In-chat setup recovery | — | ✅ | — | ✅ (+ saves paths) |
-| Read-only mode, tool groups | — | — | — | ✅ |
-| MCP SDK 1.x and 2.x | 1.x only | 2.x only | 1.x | ✅ both |
-| Telemetry | none | on by default (opt-out) | none | **none** |
-
----
-
 ## Contributing
 
 Issues and pull requests are welcome at [github.com/krishanthsam/sam-gsc-mcp](https://github.com/krishanthsam/sam-gsc-mcp).
@@ -735,26 +708,20 @@ tests/            pytest suite
 
 Built by **Krishanth Sam** — [Sam Optimizer](https://samoptimizer.com) · [LinkedIn](https://www.linkedin.com/in/krishanth-sam).
 
-Sam GSC MCP stands on the shoulders of
-[AminForou/mcp-gsc](https://github.com/AminForou/mcp-gsc) (Amin Foroutan),
-[surendranb/google-search-console-mcp](https://github.com/surendranb/google-search-console-mcp) (Surendran B) and
-[metehan777/google-search-console-mcp](https://github.com/metehan777/google-search-console-mcp) (Metehan Yesilyurt).
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-
 Not affiliated with or endorsed by Google. Google Search Console is a trademark of Google LLC.
 
 ---
 
 ## License
 
-MIT License — see [LICENSE](LICENSE). Third-party notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+MIT License — see [LICENSE](LICENSE).
 
 ---
 
 ## Changelog
 
 ### [1.0.0] — 2026-10-24
-- First release combining every tool and skill from the three reference servers into one.
+- First release: 40 tools, 11 SEO skills and 6 prompts in one server.
 - New: SEO insight tools (striking distance, cannibalization, brand vs non-brand, low CTR), hourly data, CSV export,
   real Indexing API, live coverage and mobile reports, property auto-matching, default property, in-chat setup,
   read-only mode, tool groups, compatibility aliases, ADC auth, 11 skills, 6 prompts, Claude Code plugin.
