@@ -3,7 +3,7 @@
   "displayName": "Sam GSC MCP",
   "version": "1.0.0",
   "description": "All-in-one Google Search Console for Claude: analytics, SEO insights, URL inspection, Indexing API, sitemaps, plus 11 SEO skills.",
-  "author": { "name": "Krishanth Sam", "url": "https://samoptimizer.com" },
+  "author": { "name": "Krishanth Sam", "url": "https://example.com" },
   "homepage": "https://github.com/krishanthsam/sam-gsc-mcp",
   "repository": "https://github.com/krishanthsam/sam-gsc-mcp",
   "license": "MIT",

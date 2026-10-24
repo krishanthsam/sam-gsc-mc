@@ -118,9 +118,9 @@ async def test_brand_split_uses_regex(fake):
         return {"rows": [{"keys": ["x"] if body.get("dimensions") else [], "clicks": clicks, "impressions": clicks * 10, "ctr": 0.1, "position": 2}]}
 
     fake.query_handler = handler
-    data = await call("get_brand_vs_nonbrand", {"site_url": "sc-domain:example.com", "brand_terms": "Sam Optimizer, samoptimizer"})
+    data = await call("get_brand_vs_nonbrand", {"site_url": "sc-domain:example.com", "brand_terms": "Acme Corp, acme"})
     assert data["branded_click_share_pct"] == 70.0
-    assert data["brand_regex"] == "(?i)(Sam\\ Optimizer|samoptimizer)"
+    assert data["brand_regex"] == "(?i)(Acme\\ Corp|acme)"
 
 
 async def test_check_indexing_issues_buckets(fake):

@@ -8,7 +8,7 @@ description: Compare branded vs non-branded search performance to see whether pe
 
 ## Steps
 
-1. Ask for the brand name plus variants and common misspellings (e.g. `sam optimizer, samoptimizer, sam optimiser`).
+1. Ask for the brand name plus variants and common misspellings (e.g. `acme, acme corp, akme`).
 2. `get_brand_vs_nonbrand(brand_terms="<comma list>", days=28, top_n=15)`.
    - Uses a case-insensitive regex filter: branded = `includingRegex`, non-branded = `excludingRegex`.
 3. Trend: run it for `days=28` and compare with `compare_search_periods(filters=[{"dimension":"query","operator":"includingRegex","expression":"<brand_regex from step 2>"}])`.

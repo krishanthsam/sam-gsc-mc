@@ -416,12 +416,11 @@ async def check_for_updates() -> str:
 
 @tool("setup", "About the creator", open_world=False)
 async def get_creator_info() -> str:
-    """About Krishanth Sam (Sam Optimizer), who built Sam GSC MCP."""
+    """About Krishanth Sam, who built Sam GSC MCP."""
     return dumps(
         {
             "creator": "Krishanth Sam",
-            "brand": "Sam Optimizer — SEO consulting",
-            "website": "https://samoptimizer.com",
+            "website": "https://example.com",
             "linkedin": "https://www.linkedin.com/in/krishanth-sam",
             "github": "https://github.com/krishanthsam",
             "project": REPO_URL,
@@ -1138,7 +1137,7 @@ async def get_brand_vs_nonbrand(site_url: Optional[str] = None, brand_terms: Uni
 
     Args:
         site_url: Exact property (defaults to GSC_SITE_URL)
-        brand_terms: Brand name plus variants/misspellings, comma separated, e.g. "sam optimizer,samoptimizer"
+        brand_terms: Brand name plus variants/misspellings, comma separated, e.g. "acme,acme corp,akme"
         days: Days to analyse (default 28)
         top_n: Top queries to list per segment (default 10)
     """

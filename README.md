@@ -706,7 +706,7 @@ tests/            pytest suite
 
 ## Credits
 
-Built by **Krishanth Sam** — [Sam Optimizer](https://samoptimizer.com) · [LinkedIn](https://www.linkedin.com/in/krishanth-sam).
+Built by **Krishanth Sam** — [Website](https://example.com) · [LinkedIn](https://www.linkedin.com/in/krishanth-sam).
 
 Not affiliated with or endorsed by Google. Google Search Console is a trademark of Google LLC.
 
